@@ -3,6 +3,7 @@
 use damianbal\QuizAPI\Core\Router;
 use damianbal\QuizAPI\Core\App;
 use damianbal\QuizAPI\Core\Http\Response;
+use damianbal\QuizAPI\Core\Http\Request;
 
 include 'vendor/autoload.php';
 
@@ -15,7 +16,17 @@ $router = new Router();
 // Define routes
 // ----------------------------------
 $router->get('/index', function() {
-    return '<b>Siema</b>';
+    return Response::response("Witaj w domu");
+});
+
+$router->get('/music', function() {
+    return Response::response(("Ale tutaj nie ma zadnej muzyki :("));
+});
+
+$router->get('/ksiazka/@id', function(Request $request) {
+    $id = $request->param('id');
+
+    return Response::response("No i pieknie wybrales ksiazke o numerze " . $id);
 });
 
 // ----------------------------------
@@ -27,6 +38,3 @@ $app = new App($router);
 // Run the app
 // ----------------------------------
 $app->run();
-
-$r = Response::response("Hello world!");
-$r->dispatch();

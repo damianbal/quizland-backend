@@ -23,11 +23,13 @@ class Route
 
     public function run(Request $request = null)
     {
+        $response = null;
+
         // check if route is a anonymous or callback
         if(is_callable($this->callback))
         {
             // call it passing request
-            call_user_func($this->callback, $request);
+            $response = call_user_func($this->callback, $request);
         }
         else // string path to controller and method
         {
@@ -37,7 +39,12 @@ class Route
             $method_name = $parts[1];
 
             $controller = new $controller_name();
-            $controller->{$method_name}($request);
+            $response = $controller->{$method_name}($request);
+        }
+
+        if($response != null)
+        {
+            $response->dispatch();
         }
     }
 }
