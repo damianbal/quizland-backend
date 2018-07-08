@@ -1,0 +1,16 @@
+{
+    "name": "damian/phpquiz_api",
+    "description": "Very simple Quiz API",
+    "authors": [
+        {
+            "name": "Damian",
+            "email": "balandowski@icloud.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "damianbal\\QuizAPI\\" : "src/"
+        }
+    }
+}
