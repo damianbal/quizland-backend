@@ -16,6 +16,8 @@ class Request
         $this->params = $params;
     }
 
+    public function getMethod() { return $this->method; }
+
     public function getPathInfo() { return $this->pathInfo; }
 
     public function param($key) { return $this->params[$key]; }

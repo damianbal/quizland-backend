@@ -46,29 +46,15 @@ class Router
     {
         $is_ok = false;
 
-        $requestArr = [];
-        $routeArr = [];
-
-        if(count($requestParts) != count($routeParts)) return false;
-
-        foreach ($requestParts as $key => $value) {
+        foreach ($requestParts  as $key => $value) {
             $routePart = $routeParts[$key];
 
-  
-
-            if(@$routeParts[$key][0] != '@')
-            {
-                $requestArr[] = $value;
-                @$routeArr[] = $routeParts[$key];
+            if($routePart == $value || $routePart[0] == '@') {
+                $is_ok = true;
             }
-        }
-
-        $diff = array_diff($requestArr, $routeArr);
-
-        
-
-        if(count($diff) == 0) {
-            $is_ok = true;
+            else {
+                $is_ok = false;
+            }
         }
 
         return $is_ok;
@@ -100,13 +86,38 @@ class Router
 
         $selectedRoute = null;
 
-        foreach($this->routes as $route) {
-            $routeParts = $this->getParts($route->path);
-            if($this->checkIfPartsAreTheSame($requestParts, $routeParts)) {
-                $selectedRoute = $route;
 
-                $this->request->setParams($this->getParamsFromParts($requestParts, $routeParts));
+
+
+        // check if any of routes matches it
+        foreach ($this->routes as $route) {
+      
+            $routeParts = $this->getParts($route->path);
+
+    
+
+            // check if length is same
+            if(count($requestParts) != count($routeParts)) continue;
+            // is it same method?
+            if($route->method != $this->request->getMethod()) continue;
+
+            $selectedRoute = $route;
+
+            if($this->checkIfPartsAreTheSame($requestParts, $routeParts)) {
+                echo "JEST OK: " . $route->path;
+
+                $params = $this->getParamsFromParts($requestParts, $routeParts);
+                foreach ($params as $key => $param) {
+                    echo "<div>$key -> $param</div>";
+                }
+                $this->request->setParams($params);
+                break;
             }
+            else {
+                $selectedRoute = null;
+            }
+
+
         }
 
         return $selectedRoute;

@@ -29,6 +29,10 @@ $router->get('/ksiazka/@id', function(Request $request) {
     return Response::response("No i pieknie wybrales ksiazke o numerze " . $id);
 });
 
+$router->post('/film/@id', function(Request $request) {
+    return Response::responseJson(['film_id' => $request->param('id')]);
+});
+
 // ----------------------------------
 // Create app
 // ----------------------------------

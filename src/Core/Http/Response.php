@@ -9,7 +9,7 @@ class Response
 {
     public $body = "";
     public $code = 200;
-    public $contentType ;
+    public $contentType;
 
     /**
      * Set output
@@ -52,10 +52,15 @@ class Response
     {
         if($this->contentType != null)
         {
-            header('Content-Type: application/' + $this->contentType);
+            header('Content-Type: application/' . $this->contentType);
         }
 
-        echo $this->body;
+        if($this->contentType == null) { 
+            echo $this->body;
+        }
+        else {
+            echo json_encode($this->body);
+        }
     }
 
     public static function response($body, $code = 200)
