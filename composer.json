@@ -7,7 +7,9 @@
             "email": "balandowski@icloud.com"
         }
     ],
-    "require": {},
+    "require": {
+        "damianbal/enterium": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "damianbal\\QuizAPI\\" : "src/"

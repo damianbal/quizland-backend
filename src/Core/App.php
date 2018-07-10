@@ -3,6 +3,7 @@
 namespace damianbal\QuizAPI\Core;
 
 use damianbal\QuizAPI\Core\Http\Request;
+use damianbal\QuizAPI\Core\Http\Response;
 
 class App 
 {
@@ -24,9 +25,10 @@ class App
 
        // $route->run($request);
        if($route != null) {
-            // TODO: check if route is same method as request if it is then we can procceed if not then call response with http code error
 
            $route->run($request);
+       } else {
+           return Response::response("Method not allowed or route doesn't exist!");
        }
 
     }

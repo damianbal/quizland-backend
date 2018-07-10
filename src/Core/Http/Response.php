@@ -50,8 +50,13 @@ class Response
      */
     public function dispatch()
     {
+        header('X-PHP-Response-Code: ' . $this->code, true, $this->code);
+        
+
         if($this->contentType != null)
         {
+            
+
             header('Content-Type: application/' . $this->contentType);
         }
 

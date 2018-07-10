@@ -101,6 +101,8 @@ class Router
         $selectedRoute = null;
 
         foreach($this->routes as $route) {
+            if($route->method != $this->request->getMethod()) continue;
+
             $routeParts = $this->getParts($route->path);
             if($this->checkIfPartsAreTheSame($requestParts, $routeParts)) {
                 $selectedRoute = $route;
