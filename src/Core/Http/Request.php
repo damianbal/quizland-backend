@@ -22,6 +22,13 @@ class Request
 
     public function param($key) { return $this->params[$key]; }
 
+    public function getRawInput($name) 
+    {
+        $rawData = file_get_contents('php://input');
+        
+        return json_decode($rawData, true)[$name];
+    }
+
     public function input($name)
     {
         if($this->method == "GET") {
@@ -34,6 +41,8 @@ class Request
             parse_str(file_get_contents("php://input"),$post_vars);
             return $post_vars[$name];
         }
+
+        $f = file_get_contents();
         
         return "";
     }

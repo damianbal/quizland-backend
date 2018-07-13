@@ -16,7 +16,9 @@ class App
 
     public function run()
     {
-        
+     
+
+
         $request = new Request();
 
         $this->router->setRequest($request);

@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 error_reporting(E_ALL & ~E_NOTICE);
 
 use damianbal\QuizAPI\Core\Router;
@@ -42,13 +46,15 @@ $router->get('/api/quiz/@id', function(Request $request) use ($quizAPI) {
 });
 
 $router->post('/api/quiz', function(Request $request) {
-    $title = $request->input('title');
-    $data = $request->input('data');
+
+    $title = $request->getRawInput('title');
+    $data = $request->getRawInput('data');
 
     // validate
+    /*
     if(strlen($title) < 3 || strlen($data) < 3) {
         return Response::responseJson(["error" => true, "message" => "Your quiz can't be added!"]);
-    }
+    }*/
 
     $q = QuizEntity::create([
         'title' => $title,
@@ -57,7 +63,7 @@ $router->post('/api/quiz', function(Request $request) {
 
     $q->save();
 
-    return Response::responseJson(["error" => false, "message" => "Your quiz has been added :)"], 201);
+    return Response::responseJson(['d' => [$title, $data], "error" => false, "message" => "Your quiz has been added :)"], 201);
 });
 
 $router->get('/api/quiz/index', function(Request $request) {
