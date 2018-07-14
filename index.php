@@ -31,15 +31,11 @@ $router = new Router();
 // ----------------------------------
 // Define routes
 // ----------------------------------
-$router->get('/index', function() {
-    return Response::response("Witaj w domu");
-});
-
 $router->get('/api/quiz/@id', function(Request $request) use ($quizAPI) {
     $q = QuizEntity::find($request->param('id'));
 
     if($q != null) {
-        return Response::responseJson(['title' => $q->title, 'data' => $q->data]);
+        return Response::responseJson(['id' => $q->id, 'title' => $q->title, 'data' => $q->data]);
     }
 
     return Response::responseJson(['message' => 'Not found'], 404);
@@ -51,10 +47,9 @@ $router->post('/api/quiz', function(Request $request) {
     $data = $request->getRawInput('data');
 
     // validate
-    /*
     if(strlen($title) < 3 || strlen($data) < 3) {
         return Response::responseJson(["error" => true, "message" => "Your quiz can't be added!"]);
-    }*/
+    }
 
     $q = QuizEntity::create([
         'title' => $title,
@@ -70,7 +65,6 @@ $router->get('/api/quiz/index', function(Request $request) {
     $quizAll = QuizEntity::builder()->get();
 
     $quizData = [];
-
 
     foreach ($quizAll as $q) {
         $quizData[] = ['title' => $q->title, 'id' => $q->id];

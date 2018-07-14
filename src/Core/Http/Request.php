@@ -2,10 +2,6 @@
 
 namespace damianbal\QuizAPI\Core\Http;
 
-/**
- * Class which will be passed as argument for callback in router
- *
- */
 class Request
 {
     protected $params = [];

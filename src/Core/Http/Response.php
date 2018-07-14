@@ -2,9 +2,7 @@
 
 namespace damianbal\QuizAPI\Core\Http;
 
-/**
- * Http response class, very basic but will do :)
- */
+
 class Response
 {
     public $body = "";
