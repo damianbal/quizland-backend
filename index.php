@@ -24,8 +24,8 @@ $config = include('src/config.php');
 // ----------------------------------
 // Admin Configuration (remember to change those!)
 // ----------------------------------
-$adminPassword = "blabla";
-$adminToken = "e824a6055d8a76cad72467a72302408d";
+$adminPassword = "ADMIN_PASSWORD";
+$adminToken = "YOUR_KEY";
 
 // connect to database
 DB::getInstance()->connect($config['dbname'], $config['host'], $config['user'], $config['pass']);

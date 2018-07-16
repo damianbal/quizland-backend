@@ -1,0 +1,3 @@
+id,"title","data"
+1,"Capitals","[{\"question\":\"Capital of Poland?\",\"answers\":[\"Szczecin\",\"Warszawa\",\"Berlin\"],\"correct_answer_index\":1}]"
+2,"zeby","[{\"question\":\"jakich zebow nie ma w uzebieniu stalym?\",\"answers\":[\"przedtrzonowych\",\"trzonowych\",\"kly\"],\"correct_answer_index\":0},{\"question\":\"ile czlowiek ma zebow ?\",\"answers\":[\"36\",\"12\",\"8\"],\"correct_answer_index\":0},{\"question\":\"jakie sa uzebienia?\",\"answers\":[\"mieszane pelne \",\"stale mleczne\"],\"correct_answer_index\":1}]"
